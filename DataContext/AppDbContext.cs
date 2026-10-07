@@ -1,7 +1,9 @@
 ﻿using ApiTreino.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 using System.Reflection;
+using System.Reflection.Emit;
 
 namespace ApiTreino.DataContext
 {
@@ -29,6 +31,24 @@ namespace ApiTreino.DataContext
 
            //odelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }*/
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            //https://stackoverflow.com/questions/34000091/the-entity-type-microsoft-aspnet-identity-entityframework-identityuserloginstr
+            base.OnModelCreating(builder);
+
+            builder.Entity<Processo>()
+                .HasOne(p => p.Estado)
+                .WithMany(e => e.Processos)
+                .HasForeignKey(p => p.EstadoId)
+                .OnDelete(DeleteBehavior.NoAction);
+
+            builder.Entity<Intervencao>()
+                .HasOne(i => i.Estado)
+                .WithMany(e => e.Intervencoes)
+                .HasForeignKey(i => i.EstadoId)
+                .OnDelete(DeleteBehavior.NoAction);
+        }
         public DbSet<Processo> Processos { get; set; }
         public DbSet<Intervencao> Intervencoes { get; set; }
         public DbSet<AnexoIntervencao> AnexosIntervencoes { get; set; }

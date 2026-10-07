@@ -421,7 +421,7 @@ namespace ApiTreino.Migrations
                     b.HasOne("ApiTreino.Models.Estado", "Estado")
                         .WithMany("Intervencoes")
                         .HasForeignKey("EstadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("ApiTreino.Models.Processo", "Processo")
@@ -446,7 +446,7 @@ namespace ApiTreino.Migrations
                     b.HasOne("ApiTreino.Models.Estado", "Estado")
                         .WithMany("Processos")
                         .HasForeignKey("EstadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("CategoriaProcesso");

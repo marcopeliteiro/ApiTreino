@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ApiTreino.Migrations
 {
     /// <inheritdoc />
-    public partial class CriaTabelasIdentity : Migration
+    public partial class IdentityTables : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -404,8 +404,7 @@ namespace ApiTreino.Migrations
                 table: "Intervencoes",
                 column: "EstadoId",
                 principalTable: "Estados",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                principalColumn: "Id");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Processos_CategoriasProcessos_CategoriaProcessoId",
@@ -420,8 +419,7 @@ namespace ApiTreino.Migrations
                 table: "Processos",
                 column: "EstadoId",
                 principalTable: "Estados",
-                principalColumn: "Id",
-                onDelete: ReferentialAction.Cascade);
+                principalColumn: "Id");
         }
 
         /// <inheritdoc />
